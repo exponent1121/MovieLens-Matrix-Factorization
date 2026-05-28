@@ -20,8 +20,7 @@ $$\hat{r}_{ui} = \mu + b_u + b_i + P_u Q_i^T$$
 * $b_u$: 특정 유저 $u$의 평점 성향 편향 (User Bias)
 * $b_i$: 특정 아이템 $i$의 고유 특징 편향 (Item Bias)
 * $P_u, Q_i$: 유저와 아이템의 잠재 요인 행렬 (Latent Factor Matrices)
-
-
+<br><br>
 
 #### 2. Robust Cold-Start Handling (강력한 예외 처리)
 추천 시스템의 고질적인 문제인 <strong>Cold-Start(학습 데이터에 없는 유저/아이템이 테스트에 등장하는 현상)</strong>를 안전하게 방어합니다. <br>
