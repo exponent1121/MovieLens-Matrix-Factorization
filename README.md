@@ -22,6 +22,7 @@ $$\hat{r}_{ui} = \mu + b_u + b_i + P_u Q_i^T$$
 * $P_u, Q_i$: 유저와 아이템의 잠재 요인 행렬 (Latent Factor Matrices)
 
 
+
 #### 2. Robust Cold-Start Handling (강력한 예외 처리)
 추천 시스템의 고질적인 문제인 <strong>Cold-Start(학습 데이터에 없는 유저/아이템이 테스트에 등장하는 현상)</strong>를 안전하게 방어합니다. <br>
 `predict` 단계에서 유저와 아이템의 인덱스 범위를 검사하여 다음과 같이 유연하게 대응합니다.
