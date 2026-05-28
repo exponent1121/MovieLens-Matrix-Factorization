@@ -1,5 +1,4 @@
-# 🎞️ MovieLens-100k Matrix Factorization Recommender <br>
-from Scratch
+# 🎞️ MovieLens-100k Matrix Factorization Recommender from Scratch
 
 ### 📌 Project Overview
 본 프로젝트는 **외부 딥러닝 프레임워크(PyTorch, TensorFlow 등)를 전혀 사용하지 않고**, 오직 **NumPy와 선형대수 수식만을 활용**하여 사용자-아이템 협업 필터링 알고리즘인 **Biased Matrix Factorization**을 바닥부터(From Scratch) 직접 구현한 추천 시스템입니다. 
