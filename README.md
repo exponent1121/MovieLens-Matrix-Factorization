@@ -34,7 +34,7 @@ $$\hat{r}_{ui} = \mu + b_u + b_i + P_u Q_i^T$$
 ---
 
 #### 📉 최적화 알고리즘
-오차 함수를 최소화하기 위해 **확률적 경사 하강법(SGD, Stochastic Gradient Descent)**을 적용하여 에포크마다 가중치를 실시간으로 업데이트. <br>
+오차 함수를 최소화하기 위해 <strong>확률적 경사 하강법(SGD, Stochastic Gradient Descent)</strong>을 적용하여 에포크마다 가중치를 실시간으로 업데이트. <br>
 과적합을 방지하기 위해 $L_2$ Regularization 패널티 수식에 포함.
 
 
