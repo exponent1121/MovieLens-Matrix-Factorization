@@ -43,7 +43,7 @@ $$\hat{r}_{ui} = \mu + b_u + b_i + P_u Q_i^T$$
 
 MovieLens에서 제공하는 `u1`부터 `u5`까지의 5-Fold dataset을 바탕으로 독립 실행한 최종 RMSE 결과.
 
-* **최적 하이퍼파라미터 세팅:** $k=40, lr=0.007, reg=0.05, \text{epochs}=30$ (with LR Decay)
+* **최적 하이퍼파라미터 세팅:** $k=40, lr=0.014, reg=0.10, \text{epochs}=30$, seed=3
 
 | Validation Set | Total Evaluated Pairs | FINAL RMSE |
 | :--- | :---: | :---: |
