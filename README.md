@@ -11,7 +11,7 @@
 
 #### 1. Biased Matrix Factorization 구현
 단순한 행렬 분해(Matrix Factorization)는 평점을 관대하게 주거나 짜게 주는 유저/아이템 고유의 성향을 반영하지 못합니다. <br>
-이를 보완하기 위해 <strong>Global Bias(전체 평균), User Bias(유저 편향), Item Bias(아이템 편향)</strong>를 수식에 통합하여 예측 정밀도를 극대화했습니다. <br>
+이를 보완하기 위해 <strong>Global Bias(전체 평균), User Bias(유저 편향), Item Bias(아이템 편향)</strong>를 수식에 통합하여 예측 정밀도를 극대화했습니다. <br><br>
 
 ##### 🎯 평점 예측 수식
 $$\hat{r}_{ui} = \mu + b_u + b_i + P_u Q_i^T$$
@@ -33,7 +33,7 @@ $$\hat{r}_{ui} = \mu + b_u + b_i + P_u Q_i^T$$
 ---
 
 #### 📉 최적화 알고리즘
-오차 함수를 최소화하기 위해 <strong>확률적 경사 하강법(SGD, Stochastic Gradient Descent)</strong>을 적용하여 에포크마다 가중치를 실시간으로 업데이트. <br>
+오차 함수를 최소화하기 위해 <strong>확률적 경사 하강법(SGD, Stochastic Gradient Descent)</strong>을 적용하여 <br> 에포크마다 가중치를 실시간으로 업데이트. <br>
 과적합을 방지하기 위해 $L_2$ Regularization 패널티 수식에 포함.
 
 
