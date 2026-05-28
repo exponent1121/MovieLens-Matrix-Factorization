@@ -11,7 +11,7 @@
 
 #### 1. Biased Matrix Factorization 구현
 단순한 행렬 분해(Matrix Factorization)는 평점을 관대하게 주거나 짜게 주는 유저/아이템 고유의 성향을 반영하지 못합니다. <br>
-이를 보완하기 위해 <strong>Global Bias(전체 평균), User Bias(유저 편향), Item Bias(아이템 편향)</strong>를 수식에 통합하여 예측 정밀도를 극대화했습니다. <br><br>
+이를 보완하기 위해 <strong>Global Bias(전체 평균), User Bias(유저 편향), Item Bias(아이템 편향)</strong>를 수식에 통합하여 <br> 예측 정밀도를 극대화했습니다. <br><br>
 
 ##### 🎯 평점 예측 수식
 $$\hat{r}_{ui} = \mu + b_u + b_i + P_u Q_i^T$$
