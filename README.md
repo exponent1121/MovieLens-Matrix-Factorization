@@ -7,7 +7,7 @@
 
 ---
 
-### 🧠 Core Algorithm (핵심 알고리즘)
+### 🧠 Core Features & Algorithm (핵심 알고리즘 및 특징)
 
 #### 1. Biased Matrix Factorization 구현
 단순한 행렬 분해(Matrix Factorization)는 평점을 관대하게 주거나 짜게 주는 유저/아이템 고유의 성향을 반영하지 못합니다. <br>
@@ -32,9 +32,35 @@ $$\hat{r}_{ui} = \mu + b_u + b_i + P_u Q_i^T$$
 
 ---
 
-#### 📉 최적화 알고리즘
-오차 함수를 최소화하기 위해 <strong>확률적 경사 하강법(SGD, Stochastic Gradient Descent)</strong>을 적용하여 <br> 에포크마다 가중치를 실시간으로 업데이트. <br>
-과적합을 방지하기 위해 $L_2$ Regularization 패널티 수식에 포함.
+#### 📉 최적화 알고리즘 및 수학적 유도 과정
+
+본 모델은 예측 오차를 최소화하기 위해 <strong>L2 정규화가 포함된 목적 함수</strong>를 정의하고, <br><strong>확률적 경사 하강법(SGD, Stochastic Gradient Descent)</strong>을 통해 파라미터를 최적화.
+
+##### 1) 목적 함수 (Loss Function)
+전체 학습 데이터에 대한 오차와 과적합 방지를 위한 패널티 항은 다음과 같이 정의.
+$$Loss = \sum (r_{ui} - \hat{r}_{ui})^2 + \lambda (||P_u||^2 + ||Q_i||^2 + b_u^2 + b_i^2)$$
+
+##### 2) 편미분을 통한 그라디언트(Gradient) 유도
+목적 함수를 최적화할 가중치 파라미터들($b_u, b_i, P_u, Q_i$)로 각각 편미분하여 기울기 도출. <br>
+(예측 오차 $e_{ui} = r_{ui} - \hat{r}_{ui}$)
+
+* 유저 편향($b_u$)에 대한 편미분: $\frac{\partial Loss}{\partial b_u} = -2e_{ui} + 2\lambda b_u$
+* 아이템 편향($b_i$)에 대한 편미분: $\frac{\partial Loss}{\partial b_i} = -2e_{ui} + 2\lambda b_i$
+* 유저 잠재 요인($P_u$)에 대한 편미분: $\frac{\partial Loss}{\partial P_u} = -2e_{ui}Q_i + 2\lambda P_u$
+* 아이템 잠재 요인($Q_i$)에 대한 편미분: $\frac{\partial Loss}{\partial Q_i} = -2e_{ui}P_u + 2\lambda Q_i$
+
+##### 3) SGD 파라미터 업데이트 규칙 (Code 1:1 매칭)
+기울기의 반대 방향으로 학습률($lr$)만큼 이동하며 파라미터 실시간 업데이트. <br>
+상수 2는 학습률에 흡수시켜 축약하며, `fit()` 함수 내부에서 아래와 같이 코드로 변환되어 실행.
+
+* $b_u \leftarrow b_u + lr \cdot (e_{ui} - \lambda b_u)$
+  * `self.b_u[u] += self.lr * (e - self.reg * self.b_u[u])`
+* $b_i \leftarrow b_i + lr \cdot (e_{ui} - \lambda b_i)$
+  * `self.b_i[i] += self.lr * (e - self.reg * self.b_i[i])`
+* $P_u \leftarrow P_u + lr \cdot (e_{ui} \cdot Q_i - \lambda P_u)$
+  * `self.P[u, :] += self.lr * (e * self.Q[i, :] - self.reg * self.P[u, :])`
+* $Q_i \leftarrow Q_i + lr \cdot (e_{ui} \cdot P_u - \lambda Q_i)$
+  * `self.Q[i, :] += self.lr * (e * temp_p - self.reg * self.Q[i, :])`
 
 
 ---
@@ -89,4 +115,3 @@ python recommender.py u1.base u1.test
 ```bash
 python test_rs.py u1.test u1.base_prediction.txt
 ```
-python test_rs.py u1.test u1.base_prediction.txt ```
